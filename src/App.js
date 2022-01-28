@@ -3,6 +3,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import NewNoteForm from './components/NewNoteForm';
 import useLocalStorage from './hooks/useLocalStorage';
+import { Box } from '@mui/material';
+import Note from './components/Note';
 function App() {
 
   const [notes, setNotes] = useLocalStorage('notes', []);
@@ -20,6 +22,18 @@ function App() {
       <NewNoteForm
         onAdd={addNote}
       />
+      <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 2, mb: 6 }}>
+        {notes.map((note, index) => {
+          return (
+            <Note
+              key={index}
+              id={index}
+              title={note.title}
+              content={note.content}
+            />
+          );
+        })}
+      </Box>
       <Footer />
     </div>
   );
