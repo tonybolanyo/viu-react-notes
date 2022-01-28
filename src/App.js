@@ -2,11 +2,10 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import NewNoteForm from './components/NewNoteForm';
-import { useState } from 'react';
-
+import useLocalStorage from './hooks/useLocalStorage';
 function App() {
 
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useLocalStorage('notes', []);
 
   function addNote(newNote) {
     setNotes(prevNotes => {
